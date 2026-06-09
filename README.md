@@ -37,7 +37,7 @@ Validate core e-commerce flows ensuring reliability, correctness, and user exper
 The project structure is designed according to modular design patterns and clean code practices:
 
 ```text
-qa-e2e-full-project/
+qa-e2e-ecommerce-automation/
 ├── .github/workflows/
 │   └── ci.yml               # Continuous Integration (CI) pipeline (GitHub Actions)
 ├── docs/
@@ -83,8 +83,8 @@ Follow these steps to run the framework locally:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/qa-e2e-full-project.git
-cd qa-e2e-full-project
+git clone https://github.com/Michideveloper/qa-e2e-ecommerce-automation.git
+cd qa-e2e-ecommerce-automation
 ```
 
 ### 2. Install dependencies

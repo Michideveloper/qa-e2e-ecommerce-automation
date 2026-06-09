@@ -1,5 +1,5 @@
 {
-  "name": "qa-e2e-full-project",
+  "name": "qa-e2e-ecommerce-automation",
   "version": "1.0.0",
   "description": "E2E testing portfolio project for Sauce Demo using Playwright and TypeScript",
   "main": "index.js",
