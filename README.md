@@ -1,114 +1,133 @@
-# E2E Automation & QA Portfolio Project - Sauce Demo 🚀
+# E2E Test Automation Framework – E-commerce Sauce Demo
 
-Este es un proyecto de portafolio profesional para el rol de **Jr/Mid QA Automation Engineer**. En él se demuestra una cobertura de pruebas de extremo a extremo (E2E) para la plataforma e-commerce **Sauce Demo**, integrando procesos de aseguramiento de la calidad tradicionales con automatización de pruebas moderna.
+This project simulates a real-world QA process, covering:
+- Test planning
+- Test case design
+- Defect reporting
+- Automated E2E testing
+- CI/CD integration
+
+This project was developed to demonstrate a production-like QA workflow, ensuring high reliability, early defect detection, and continuous validation.
 
 ---
 
-## 📁 Estructura del Proyecto
+## Objective
+Validate core e-commerce flows ensuring reliability, correctness, and user experience through a combination of manual and automated testing.
 
-La arquitectura del proyecto sigue las mejores prácticas de modularidad y separación de responsabilidades:
+---
+
+## Scope
+- **Authentication**: Verification of multi-user login behaviors (standard, locked out, empty inputs, invalid credentials).
+- **Product Browsing**: Correct presentation of products, sorting by price from low to high, and catalog stability.
+- **Cart Management**: Item persistence, adding and removing products from catalog and cart views.
+- **Checkout Process**: Input validation, math accuracy on item totals, taxes, and final order completion.
+
+---
+
+## Risks
+- **Incorrect price calculations**: Verification of math total formulas at the checkout step.
+- **Broken product images**: Handling UI layout anomalies and image source checks.
+- **Checkout failures**: Tracking functional blocking actions during information submittal.
+- **Session handling issues**: Confirming secure redirection and failure banners.
+
+---
+
+## Project Structure
+
+The project structure is designed according to modular design patterns and clean code practices:
 
 ```text
 qa-e2e-full-project/
 ├── .github/workflows/
-│   └── ci.yml               # Pipeline de Integración Continua (GitHub Actions)
+│   └── ci.yml               # Continuous Integration (CI) pipeline (GitHub Actions)
 ├── docs/
-│   ├── test-plan.md         # Plan de pruebas funcional (alcance, riesgos)
-│   ├── test-strategy.md     # Estrategia técnica (POM, decisiones de arquitectura)
-│   ├── test-cases.md        # Matriz de casos de prueba detallada (Markdown)
-│   ├── test-cases.xlsx      # Matriz de casos de prueba formal (Excel generado)
-│   └── bug-reports.md       # Reportes de bugs de errores simulados
-├── pages/                   # Page Object Model (POM)
-│   ├── LoginPage.ts         # Selectores y métodos para Login
-│   ├── InventoryPage.ts     # Selectores y métodos para el catálogo de productos
-│   ├── CartPage.ts          # Selectores y acciones del carrito de compras
-│   └── CheckoutPage.ts      # Flujo de facturación, totales e información
+│   ├── test-plan.md         # Functional test plan (scope, strategy, risks)
+│   ├── test-strategy.md     # Technical strategy (POM, architecture decisions)
+│   ├── test-cases.md        # Detailed test cases matrix (Markdown format)
+│   ├── test-cases.xlsx      # Formal test cases matrix (Generated Excel file)
+│   └── bug-reports.md       # Defect reports of simulated system errors
+├── pages/                   # Page Object Model (POM) classes
+│   ├── LoginPage.ts         # Selectors and helper methods for Auth
+│   ├── InventoryPage.ts     # Catalog items, sorting, and adding/removing products
+│   ├── CartPage.ts          # Shopping cart selectors and actions
+│   └── CheckoutPage.ts      # Billing form, payment totals, and purchase completion
 ├── tests/
-│   ├── e2e/                 # Archivos de especificaciones de pruebas
-│   │   ├── auth.spec.ts     # Pruebas de Login positivo/negativo
-│   │   ├── purchase.spec.ts # Flujo de compra completo y validaciones
-│   │   └── edge-cases.spec.ts # Casos límites con problem_user y error_user
+│   ├── e2e/                 # Automated test specification files
+│   │   ├── auth.spec.ts     # Auth test suite (positive and negative cases)
+│   │   ├── purchase.spec.ts # Complete purchase journey and checkout math validation
+│   │   └── edge-cases.spec.ts # Simulating catalog & checkout defects
 │   └── fixtures/
-│       └── baseFixtures.ts  # Configuración y carga automática de Page Objects
+│       └── baseFixtures.ts  # Playwright extensions to auto-instantiate Page Objects
 ├── utils/
-│   └── generate-xlsx.js     # Script de utilidad para exportar casos de prueba a Excel
-├── playwright.config.ts     # Configuración del framework Playwright
-├── package.json             # Gestión de dependencias y scripts npm
-└── README.md                # Guía general de uso y presentación del proyecto
+│   └── generate-xlsx.js     # Script tool to export test cases matrix to Excel
+├── playwright.config.ts     # Playwright Test Framework configuration
+├── package.json             # Package manifests, scripts, and dependencies
+└── README.md                # Framework documentation and execution guide
 ```
 
 ---
 
-## 🛠️ Tecnologías y Herramientas
+## Tech Stack & Tools
 
 - **Core**: JavaScript, TypeScript.
-- **Automation Framework**: [Playwright](https://playwright.dev/) (para aserciones web-first, auto-esperas y paralelismo veloz).
-- **Patrón de Diseño**: Page Object Model (POM) + Custom Fixtures (Playwright).
-- **Integración Continua**: GitHub Actions (CI) con carga de artefactos HTML.
-- **Reporting**: Reportes HTML integrados nativos de Playwright (con video y capturas en fallos).
+- **Automation Framework**: [Playwright](https://playwright.dev/) (for web-first assertions, auto-waiting, and fast parallel execution).
+- **Design Pattern**: Page Object Model (POM) + Custom Fixtures.
+- **Continuous Integration**: GitHub Actions (CI) with automated HTML report artifact uploading.
+- **Reporting**: Playwright HTML Reporter (embedded screenshots, videos, and execution traces on failures).
 
 ---
 
-## 📋 Cobertura de Pruebas
+## Setup & Local Execution
 
-Se validan escenarios críticos incluyendo:
-- **Casos Positivos**: Login exitoso, ordenamiento por precio de menor a mayor, adición de ítems a la cesta y cálculo matemático preciso de impuestos y totales del checkout en un flujo de compra completo.
-- **Casos Negativos**: Validaciones de campos obligatorios en login y formulario de checkout (ZIP code faltante), error de inicio de sesión por credenciales incorrectas o cuentas bloqueadas (`locked_out_user`).
-- **Casos Límite y Bugs Reales**: Pruebas utilizando perfiles de Sauce Demo como `problem_user` (verificación automática de URL de imágenes rotas en catálogo) y `error_user` (verificación de fallas funcionales en el flujo de envío del checkout).
+Follow these steps to run the framework locally:
 
----
-
-## 🚀 Instalación y Uso Local
-
-Sigue estos pasos para clonar y ejecutar las pruebas localmente:
-
-### 1. Clonar el repositorio
+### 1. Clone the repository
 ```bash
-git clone https://github.com/tu-usuario/qa-e2e-full-project.git
+git clone https://github.com/your-username/qa-e2e-full-project.git
 cd qa-e2e-full-project
 ```
 
-### 2. Instalar dependencias
+### 2. Install dependencies
 ```bash
 npm install
 ```
 
-### 3. Instalar navegadores de Playwright
+### 3. Install Playwright browsers
 ```bash
 npx playwright install
 ```
 
-### 4. Ejecutar las pruebas
-- **Ejecución estándar en modo headless**:
+### 4. Run tests
+- **Standard execution (Headless mode)**:
   ```bash
   npm test
   ```
-- **Ejecución interactiva (Playwright UI Mode)**:
+- **Interactive mode (Playwright UI Runner)**:
   ```bash
   npm run test:ui
   ```
 
 ---
 
-## 📊 Reportes y Evidencia
+## Reporting & Test Evidence
 
-Una vez ejecutadas las pruebas, puedes abrir el último reporte interactivo HTML con el comando:
+After tests finish, you can review execution logs and visual reports by running:
 ```bash
 npm run test:report
 ```
 
-En caso de que una prueba falle, Playwright automáticamente:
-1. Captura una pantalla en el momento exacto del error.
-2. Graba un video interactivo del navegador web durante la ejecución.
-3. Almacena las trazas (traces) detalladas de la ejecución para su análisis profundo.
+In the event of a test failure, Playwright automatically:
+1. Captures a **screenshot** of the page state at the failure point.
+2. Records a **video** of the test execution.
+3. Generates **traces** containing network logs, source location, and step details for easy debugging.
 
 ---
 
-## ⚙️ Integración Continua (CI/CD)
+## Continuous Integration (CI/CD)
 
-El proyecto cuenta con un archivo de flujo de trabajo `.github/workflows/ci.yml`. Cada vez que se realiza un envío (`push`) o una solicitud de extracción (`pull request`) a las ramas `main` o `master`:
-1. Levanta un contenedor con Ubuntu Linux.
-2. Instala Node.js y las dependencias del proyecto.
-3. Instala los navegadores necesarios para Playwright.
-4. Ejecuta toda la suite de pruebas.
-5. Almacena y adjunta los reportes HTML como artefactos descargables de la ejecución en GitHub Actions por un periodo de 30 días.
+The continuous integration pipeline is defined in `.github/workflows/ci.yml`. On every `push` and `pull_request` to the `main` or `master` branches, GitHub Actions:
+1. Spins up a fresh Ubuntu Linux runner.
+2. Installs Node.js and dependencies.
+3. Downloads the required Playwright browser binaries.
+4. Executes the automated test suite.
+5. Saves and publishes the Playwright HTML test report as a downloadable run artifact, retained for 30 days.
