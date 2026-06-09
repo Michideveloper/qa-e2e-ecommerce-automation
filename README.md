@@ -8,6 +8,7 @@
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=Michideveloper&color=663399&style=flat-square&label=PROFILE+VIEWS" alt="Profile Views" />
 </p>
+
 # E2E Test Automation Framework – E-commerce Sauce Demo
 
 This project simulates a real-world QA process, covering:
